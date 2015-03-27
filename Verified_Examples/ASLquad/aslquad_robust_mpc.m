@@ -4,9 +4,7 @@
 
 % run Init_RobustMPC;
 
-%%  Load TTR Parameters
-Ts = 0.16;
-Ts = 0.08;
+%%  Load ASLquad Parameters
 Ts = 0.04;
 
 run example_ASLquad_model
@@ -39,47 +37,27 @@ W_x_bounds = 0*[-0.05 0.05];
 N = 2; 
 
 Y_x_Limit_orig = [Inf 2 deg2rad(45) deg2rad(360)]; % x 
-% Y_x_Limit_orig = [Inf 10]; % z 
 
 U_x_bounds = [-deg2rad(30) deg2rad(30)]; % xy_controller
-% U_x_bounds = [-5 5]; % z_controller
 
 %   norm_type = 1;
-Q = 0.8*diag([22.5 5 .1 .01]); % x_controller
-Q = .65*diag([71 12 1.5 0.3]); % x_controller
-Q = .65*diag([71 15 1.5 0.3]); % x_controller
-Q = .65*diag([71 17.5 1.65 0.55]); % x_controller
-Q = .65*diag([71 7.5 1.65 0.55]); % x_controller % - this one
-Q = 10*diag([132 18.5 1.05 0.2]); % x_controller % - this one
-% Q = .65*diag([90 17.5 1.65 0.55]); % x_controller % Ts = 0.06
-% Q = 1*diag([25 2 .1 .01]); % y_controller
-% Q = 1*diag([25 2 .1 .01]); % y_controller
-% Q = 10*diag([24 2.5 .1 .01]); % y_controller
-% Q = 10*diag([71 7.5 1.65 0.55]); % y_controller % - this one
-% Q = .65*diag([71 17.5 1.65 0.55]); % y_controller
-% Q = diag([21 2]); % z_controller
+Q = 10*diag([132 18.5 1.05 0.2]); 
 
 
-R = .15; R = .165; % x_controller
-% R = .2; % y_controller
-%  R = .15; % y_controller
-% R = .35; % z_controller
+R = .15; R = .165; 
 
 
 Y_ref = [0 0 0 0]'; % x, y
-% Y_ref = [0 0]'; % z
 
 Q_L = 1;
 R_L = 10;
 [sol_x_mp,ValueFunction_x,MP_SolutionOut] = MP_CL_MinMax_SDPrelax(add_usys_d, x_state, Y_ref, Y_x_Limit_orig,U_x_bounds,W_x_bounds,Q,R,N,Q_L,R_L,norm_type)
 
 %  Simulate in time
-%flag_sim = input('Show Simulation? [0/1]');
 flag_sim = 1
 if(flag_sim == 1)
     x_state_init = zeros(length(x_state),1); x_state_init = [1 0 0 0]'; %  x_state_init = [1 0]';
     time_sec = 10; % 10 secs
-  %  time_sec = input('how long [s]?');
     [y,u_ctrl_seq,t] = simulate_Multiparametric_Approximate_ClosedLoop_MinMax(add_usys_d,sol_x_mp,x_state_init,time_sec,MP_SolutionOut.Optimizer_x,W_x_bounds,x_state);
 end
 %%  Export and Test Real-Time Controller
