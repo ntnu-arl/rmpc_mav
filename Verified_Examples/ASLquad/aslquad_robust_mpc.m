@@ -2,7 +2,7 @@
 %
 %   Authors: Kostas Alexis (konstantinos.alexis@mavt.ethz.ch)
 
-% run Init_RobustMPC;
+run Init_RobustMPC; % be at the root directory
 
 %%  Load ASLquad Parameters
 Ts = 0.04;
