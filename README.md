@@ -3,11 +3,9 @@
 Robust Model Predictive Control for Micro Aerial Vehicles (MAVs)
 ----------------------------------------------------------------
 
-This code implementation accompanies the paper submission entitled:
+This code implementation accompanies the paper entitled:
 
 "Robust Model Predictive Flight  Control of Unmanned Rotorcrafts"
-
-submitted to the Journal of Intelligent and Robotic Systems
 
 Below, information on how to use the toolbox is provided. 
 
