@@ -287,6 +287,3 @@ Contact
 -------
 For any question or request don't hesitate to [contact me](mailto:konstantinos.alexis@gmail.com). 
 
-Note
-----
-Upon successful evaluation, the code will be re-structured and released in combination with installation pipelines for a specific set-up with YALMIP, MPT and solver options. 
